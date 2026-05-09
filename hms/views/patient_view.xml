@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+
+    <data>
+
+        <!-- List View -->
+
+        <record id="patient_list_view" model="ir.ui.view">
+
+            <field name="name">hms.patient.list</field>
+
+            <field name="model">hms.patient</field>
+
+            <field name="arch" type="xml">
+
+                <list>
+
+                    <field name="first_name"/>
+
+                    <field name="last_name"/>
+
+                    <field name="age"/>
+
+                    <field name="department_id"/>
+
+                </list>
+
+            </field>
+
+        </record>
+
+
+
+        <!-- Form View -->
+
+        <record id="patient_form_view" model="ir.ui.view">
+
+            <field name="name">hms.patient.form</field>
+
+            <field name="model">hms.patient</field>
+
+            <field name="arch" type="xml">
+
+                <form>
+                    <header>
+
+                        <button name="set_good_state"
+                            string="Good"
+                            type="object"/>
+
+                        <button name="set_fair_state"
+                            string="Fair"
+                            type="object"/>
+
+                        <button name="set_serious_state"
+                            string="Serious"
+                            type="object"/>
+
+                        <field name="state"
+                            widget="statusbar"/>
+
+                    </header>
+
+                    <sheet>
+
+                        <group>
+
+                            <group>
+
+                                <field name="first_name"
+                                       required="1"/>
+
+                                <field name="last_name"
+                                       required="1"/>
+
+                                <field name="birth_date"/>
+
+                                <field name="age"/>
+
+                                <field name="department_id"
+                                       domain="[('is_opened','=',True)]"/>
+                                
+                                <field name="department_capacity"
+                                    readonly="1"/>
+
+                                <field name="doctor_ids"
+                                       widget="many2many_tags"
+                                       readonly="not department_id"/>
+
+                            </group>
+
+
+                            <group>
+
+                                <field name="blood_type"/>
+
+                                <field name="pcr"/>
+
+                                <field name="cr_ratio"
+                                       required="pcr"/>
+
+                                <field name="image"/>
+
+                            </group>
+
+                        </group>
+
+
+                        <group>
+
+                            <field name="history"
+                                   invisible="age &lt; 50"/>
+
+                            <field name="address"/>
+
+                        </group>
+
+                    </sheet>
+
+                </form>
+
+            </field>
+
+        </record>
+
+
+
+        <!-- Action -->
+
+        <record id="action_patients" model="ir.actions.act_window">
+
+            <field name="name">Patients</field>
+
+            <field name="res_model">hms.patient</field>
+
+            <field name="view_mode">list,form</field>
+
+        </record>
+
+
+
+        <!-- Menus -->
+
+        <menuitem id="hms_root_menu"
+                  name="HMS"/>
+
+
+        <menuitem id="hms_data_menu"
+                  name="Data"
+                  parent="hms_root_menu"/>
+
+
+        <menuitem id="hms_patients_menu"
+                  name="Patients"
+                  parent="hms_data_menu"
+                  action="action_patients"/>
+
+    </data>
+
+</odoo>

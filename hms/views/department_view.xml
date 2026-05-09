@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+
+    <data>
+
+        <!-- List View -->
+
+        <record id="department_list_view" model="ir.ui.view">
+
+            <field name="name">hms.department.list</field>
+
+            <field name="model">hms.department</field>
+
+            <field name="arch" type="xml">
+
+                <list>
+
+                    <field name="name"/>
+
+                    <field name="capacity"/>
+
+                    <field name="is_opened"/>
+
+                </list>
+
+            </field>
+
+        </record>
+
+
+        <!-- Form View -->
+
+        <record id="department_form_view" model="ir.ui.view">
+
+            <field name="name">hms.department.form</field>
+
+            <field name="model">hms.department</field>
+
+            <field name="arch" type="xml">
+
+                <form>
+
+                    <sheet>
+
+                        <group>
+
+                            <field name="name"/>
+
+                            <field name="capacity"/>
+
+                            <field name="is_opened"/>
+
+                            <field name="patient_ids"/>
+
+                        </group>
+
+                    </sheet>
+
+                </form>
+
+            </field>
+
+        </record>
+
+
+        <!-- Action -->
+
+        <record id="action_departments" model="ir.actions.act_window">
+
+            <field name="name">Departments</field>
+
+            <field name="res_model">hms.department</field>
+
+            <field name="view_mode">list,form</field>
+
+        </record>
+
+
+        <!-- Menu -->
+
+        <menuitem id="hms_departments_menu"
+                  name="Departments"
+                  parent="hms_data_menu"
+                  action="action_departments"/>
+
+    </data>
+
+</odoo>
