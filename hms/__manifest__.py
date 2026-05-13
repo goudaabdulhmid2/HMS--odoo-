@@ -14,7 +14,7 @@
 
     'version': '0.1',
 
-    'depends': ['base'],
+    'depends': ['base', 'contacts'],
 
     'data': [
 
@@ -23,8 +23,10 @@
     'views/patient_view.xml',
 
     'views/department_view.xml',
-
+    
     'views/doctor_view.xml',
+
+    'views/res_partner_view.xml',
 
     ],
 
