@@ -55,10 +55,6 @@ class Patient(models.Model):
         'hms.doctors'
     )
 
-    _sql_constraints = [
-        ('unique_email', 'UNIQUE(email)', 'Email already exists!')
-    ]
-
 
     @api.depends('birth_date')
     def _compute_age(self):
@@ -69,7 +65,9 @@ class Patient(models.Model):
 
             if record.birth_date:
 
-                record.age = today.year - record.birth_date.year
+                record.age = (
+                    today.year - record.birth_date.year
+                )
 
             else:
 
@@ -87,7 +85,26 @@ class Patient(models.Model):
 
                 if not re.match(pattern, record.email):
 
-                    raise ValidationError("Invalid Email")
+                    raise ValidationError(
+                        "Invalid Email"
+                    )
+
+
+    @api.constrains('email')
+    def _check_unique_email(self):
+
+        for record in self:
+
+            duplicated_patient = self.search([
+                ('email', '=', record.email),
+                ('id', '!=', record.id)
+            ], limit=1)
+
+            if duplicated_patient:
+
+                raise ValidationError(
+                    'Email already exists!'
+                )
 
 
     @api.constrains('age')
@@ -97,7 +114,9 @@ class Patient(models.Model):
 
             if record.age < 0:
 
-                raise ValidationError("Age must be positive")
+                raise ValidationError(
+                    "Age must be positive"
+                )
 
 
     @api.onchange('age')
