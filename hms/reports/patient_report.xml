@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+
+    <!-- Report Action -->
+
+    <record id="action_patient_report"
+            model="ir.actions.report">
+
+        <field name="name">Patient Report</field>
+
+        <field name="model">hms.patient</field>
+
+        <field name="report_type">qweb-html</field>
+
+        <field name="report_name">hms.report_patient_template</field>
+
+        <field name="report_file">hms.report_patient_template</field>
+
+    </record>
+
+
+    <!-- Report Template -->
+
+    <template id="report_patient_template">
+
+        <t t-name="hms.report_patient_template">
+
+            <div class="page">
+
+                <h1>
+                    Patient Report
+                </h1>
+
+                <br/>
+
+                <t t-foreach="docs"
+                   t-as="patient">
+
+                    <p>
+                        <strong>First Name:</strong>
+
+                        <span t-esc="patient.first_name"/>
+                    </p>
+
+                    <p>
+                        <strong>Last Name:</strong>
+
+                        <span t-esc="patient.last_name"/>
+                    </p>
+
+                    <p>
+                        <strong>Email:</strong>
+
+                        <span t-esc="patient.email"/>
+                    </p>
+
+                    <p>
+                        <strong>Birth Date:</strong>
+
+                        <span t-esc="patient.birth_date"/>
+                    </p>
+
+                    <p>
+                        <strong>Age:</strong>
+
+                        <span t-esc="patient.age"/>
+                    </p>
+
+                    <p>
+                        <strong>Blood Type:</strong>
+
+                        <span t-esc="patient.blood_type"/>
+                    </p>
+
+                    <p>
+                        <strong>PCR:</strong>
+
+                        <span t-esc="patient.pcr"/>
+                    </p>
+
+                    <p>
+                        <strong>CR Ratio:</strong>
+
+                        <span t-esc="patient.cr_ratio"/>
+                    </p>
+
+                    <p>
+                        <strong>Department:</strong>
+
+                        <span t-esc="patient.department_id.name"/>
+                    </p>
+
+                    <p>
+                        <strong>Department Capacity:</strong>
+
+                        <span t-esc="patient.department_capacity"/>
+                    </p>
+
+                    <p>
+                        <strong>Doctors:</strong>
+                    </p>
+
+                    <ul>
+
+                        <t t-foreach="patient.doctor_ids"
+                           t-as="doctor">
+
+                            <li>
+
+                                <span t-esc="doctor.name"/>
+
+                            </li>
+
+                        </t>
+
+                    </ul>
+
+                    <p>
+                        <strong>Address:</strong>
+
+                        <span t-esc="patient.address"/>
+                    </p>
+
+                    <p>
+                        <strong>State:</strong>
+
+                        <span t-esc="patient.state"/>
+                    </p>
+
+                </t>
+
+            </div>
+
+        </t>
+
+    </template>
+
+</odoo>

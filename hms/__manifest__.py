@@ -18,7 +18,14 @@
 
     'data': [
 
+    'security/security.xml',
+
+    'security/record_rules.xml',
+
     'security/ir.model.access.csv',
+
+
+    'reports/patient_report.xml',
 
     'views/patient_view.xml',
 

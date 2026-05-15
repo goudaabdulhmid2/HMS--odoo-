@@ -76,9 +76,10 @@
         <!-- Menu -->
 
         <menuitem id="hms_doctors_menu"
-                  name="Doctors"
-                  parent="hms_data_menu"
-                  action="action_doctors"/>
+                name="Doctors"
+                parent="hms_data_menu"
+                action="action_doctors"
+                groups="hms.group_hms_manager"/>
 
     </data>
 

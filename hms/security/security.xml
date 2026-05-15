@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+
+    <data>
+
+        <!-- HMS User -->
+
+        <record id="group_hms_user"
+                model="res.groups">
+
+            <field name="name">
+                HMS User
+            </field>
+
+        </record>
+
+
+        <!-- HMS Manager -->
+
+        <record id="group_hms_manager"
+                model="res.groups">
+
+            <field name="name">
+                HMS Manager
+            </field>
+
+        </record>
+
+    </data>
+
+</odoo>
